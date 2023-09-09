@@ -1,0 +1,9 @@
+.column-up {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.column-down {
+  display: flex;
+  flex-direction: column;
+}
