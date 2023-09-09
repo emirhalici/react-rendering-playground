@@ -1,12 +1,5 @@
-import { prepareForRender } from './hooks/useState';
-
-type ChildrenProps = {
-  children?: Node[];
-  className?: string;
-};
-
-type ComponentProps<T = object> = ChildrenProps & T;
-type Component<T = object> = (props: ComponentProps<T>) => HTMLElement;
+import { prepareForRender } from './useState';
+import { Component, ComponentProps, Attributes } from './types';
 
 let initialComponent: Component;
 let initialComponentProps: ComponentProps;
@@ -30,4 +23,3 @@ function start(parentComponent: Component, props: ComponentProps) {
 }
 
 export { render, start };
-export type { Component, ComponentProps };

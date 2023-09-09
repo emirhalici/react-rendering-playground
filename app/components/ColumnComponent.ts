@@ -1,4 +1,4 @@
-import { Component } from '../renderer';
+import { Component } from '../core/renderer';
 
 type ColumnComponentProps = {
   direction: 'up' | 'down';

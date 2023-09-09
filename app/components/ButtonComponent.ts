@@ -1,4 +1,4 @@
-import { Component, ComponentProps } from '../renderer';
+import { Component, ComponentProps } from '../core/types';
 
 type ButtonComponentProps = {
   innerText: string;

@@ -2,8 +2,8 @@ import ButtonComponent from './components/ButtonComponent';
 import CheckboxComponent from './components/CheckboxComponent';
 import ColumnComponent from './components/ColumnComponent';
 import TextComponent from './components/TitleComponent';
-import { Component, ComponentProps } from './renderer';
-import useState from './hooks/useState';
+import { Component, ComponentProps } from './core/renderer';
+import useState from './core/useState';
 
 const App: Component = ({ children }: ComponentProps) => {
   const [state, setState] = useState(1);
