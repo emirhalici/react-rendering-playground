@@ -1,4 +1,4 @@
-import { Component } from '../core/renderer';
+import { Component } from '../core/types';
 
 type CheckboxComponentProps = {
   label: string;

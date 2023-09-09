@@ -2,7 +2,7 @@ import ButtonComponent from './components/ButtonComponent';
 import CheckboxComponent from './components/CheckboxComponent';
 import ColumnComponent from './components/ColumnComponent';
 import TextComponent from './components/TitleComponent';
-import { Component, ComponentProps } from './core/renderer';
+import { Component, ComponentProps } from './core/types';
 import useState from './core/useState';
 
 const App: Component = ({ children }: ComponentProps) => {
