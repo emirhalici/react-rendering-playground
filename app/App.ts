@@ -1,7 +1,7 @@
 import ButtonComponent from './components/ButtonComponent';
 import CheckboxComponent from './components/CheckboxComponent';
 import ColumnComponent from './components/ColumnComponent';
-import TextComponent from './components/Title';
+import TextComponent from './components/TitleComponent';
 import { Component, ComponentProps } from './renderer';
 import useState from './hooks/useState';
 
