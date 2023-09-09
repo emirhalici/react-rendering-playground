@@ -1,4 +1,4 @@
-import { render } from './renderer';
+import { render } from '../renderer';
 
 const stateValues: unknown[] = [];
 let index = -1;

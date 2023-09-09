@@ -1,4 +1,4 @@
-import { prepareForRender } from './useState';
+import { prepareForRender } from './hooks/useState';
 
 type ChildrenProps = {
   children?: Node[];

@@ -3,7 +3,7 @@ import CheckboxComponent from './components/CheckboxComponent';
 import ColumnComponent from './components/ColumnComponent';
 import TextComponent from './components/Title';
 import { Component, ComponentProps } from './renderer';
-import useState from './useState';
+import useState from './hooks/useState';
 
 const App: Component = ({ children }: ComponentProps) => {
   const [state, setState] = useState(1);
