@@ -12,6 +12,7 @@ const CheckboxComponent: Component<CheckboxComponentProps> = ({
   checked,
   onChecked,
   children,
+  className,
 }) => {
   const labelElement = document.createElement('label');
   labelElement.setAttribute('for', id);
@@ -26,6 +27,7 @@ const CheckboxComponent: Component<CheckboxComponentProps> = ({
   };
 
   labelElement.append(label, inputElement, ...(children ?? []));
+  if (className) labelElement.className = className;
   return labelElement;
 };
 

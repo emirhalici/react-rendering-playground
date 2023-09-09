@@ -8,9 +8,11 @@ const TextComponent: Component<TextComponentProps> = ({
   children,
   type,
   text,
+  className,
 }: ComponentProps<TextComponentProps>) => {
   const textElement = document.createElement(type);
   textElement.innerText = text;
+  if (className) textElement.className = className;
   if (children) textElement.append(...children);
   return textElement;
 };

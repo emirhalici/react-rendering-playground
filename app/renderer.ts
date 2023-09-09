@@ -2,6 +2,7 @@ import { prepareForRender } from './hooks/useState';
 
 type ChildrenProps = {
   children?: Node[];
+  className?: string;
 };
 
 type ComponentProps<T = object> = ChildrenProps & T;
