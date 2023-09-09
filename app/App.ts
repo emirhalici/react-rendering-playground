@@ -1,4 +1,5 @@
 import ButtonComponent from './components/ButtonComponent';
+import CheckboxComponent from './components/CheckboxComponent';
 import ColumnComponent from './components/ColumnComponent';
 import TextComponent from './components/Title';
 import { Component, ComponentProps } from './renderer';
@@ -6,6 +7,7 @@ import useState from './useState';
 
 const App: Component = ({ children }: ComponentProps) => {
   const [state, setState] = useState(1);
+  const [toggleValue, setToggleValue] = useState(true);
 
   return ColumnComponent({
     direction: 'down',
@@ -19,6 +21,16 @@ const App: Component = ({ children }: ComponentProps) => {
         onClick: () => {
           setState(state + 1);
         },
+      }),
+      TextComponent({
+        type: 'h3',
+        text: `Toggle value: ${toggleValue}`,
+      }),
+      CheckboxComponent({
+        label: 'Toggle',
+        id: 'checkbox',
+        checked: toggleValue,
+        onChecked: setToggleValue,
       }),
       ...(children ?? []),
     ],

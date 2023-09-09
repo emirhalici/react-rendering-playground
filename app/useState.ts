@@ -1,18 +1,26 @@
 import { render } from './renderer';
 
-let stateValue: unknown;
+const stateValues: unknown[] = [];
+let index = -1;
 
-export default function useState<S>(
+const useState = <S>(
   initialValue: S,
-): [value: S, setValue: (value: S) => void] {
-  if (stateValue === undefined) {
-    stateValue = initialValue;
+): [value: S, setValue: (value: S) => void] => {
+  index++;
+  const currentIndex = Number(index);
+  if (stateValues[currentIndex] === undefined) {
+    stateValues[currentIndex] = initialValue;
   }
 
   const setValue = (newValue: S) => {
-    stateValue = newValue;
+    stateValues[currentIndex] = newValue;
     render();
   };
 
-  return [stateValue as S, setValue];
-}
+  return [stateValues[currentIndex] as S, setValue];
+};
+
+export default useState;
+export const prepareForRender = () => {
+  index = 1;
+};

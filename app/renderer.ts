@@ -1,3 +1,5 @@
+import { prepareForRender } from './useState';
+
 type ChildrenProps = {
   children?: Node[];
 };
@@ -9,6 +11,7 @@ let initialComponent: Component;
 let initialComponentProps: ComponentProps;
 
 function render() {
+  prepareForRender();
   const entryPoint = document.querySelector('.playground-entry-point');
   if (entryPoint) {
     entryPoint.replaceChildren(initialComponent(initialComponentProps));
