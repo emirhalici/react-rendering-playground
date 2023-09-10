@@ -1,4 +1,4 @@
-{
+export default {
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": [
@@ -7,6 +7,6 @@
     "prettier"
   ],
   "rules": {
-    // Add your custom rules or configurations here
+    'jsx-rule/jsx-import': 'error',
   }
-}
+};

@@ -3,7 +3,7 @@ type ChildrenProps = {
   className?: string;
 };
 type ComponentProps<T = object> = ChildrenProps & T;
-type Component<T = object> = (props: ComponentProps<T>) => HTMLElement;
+type Component<T = object> = (props: ComponentProps<T>) => Element;
 
 type SetValueCallback<T> = (value: T) => void;
 
