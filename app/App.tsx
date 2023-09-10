@@ -29,6 +29,7 @@ const App: Component = ({}: ComponentProps) => {
         Click me
       </button>
       <h3>Toggle value: {toggleValue}</h3>
+      <ConditionalComponent state={state}>Children here</ConditionalComponent>
       <label>
         Toggle
         <input
@@ -42,3 +43,15 @@ const App: Component = ({}: ComponentProps) => {
 };
 
 export default App;
+
+function ConditionalComponent(
+  props: ComponentProps<{
+    state: number;
+  }>,
+) {
+  if (props.state % 2 === 0) {
+    return <div>Hello</div>;
+  } else {
+    return <div>{props.state}</div>;
+  }
+}

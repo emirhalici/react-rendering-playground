@@ -1,5 +1,7 @@
 // https://gist.github.com/borestad/eac42120613bc67a3714f115e8b485a7
 
+import { Component } from './types';
+
 const entityMap: Record<string, string> = {
   '&': 'amp',
   '<': 'lt',
@@ -21,14 +23,22 @@ const AttributeMapper = (val: string) =>
   })[val] || val;
 
 export function customJsx(
-  tag: string,
-  attributes?: { [key: string]: any },
-  ...children: (HTMLElement | string)[]
-): HTMLElement {
-  const element = document.createElement(tag);
-
+  tag: string | Component,
+  attributes?: Record<string, any>,
+  ...children: (Element | string)[]
+): Element {
   attributes = attributes || {};
   const stack: any[] = [...children];
+
+  const isComponent = typeof tag === 'function';
+  // Element to be created is a JSX Component, construct it directly and return
+  if (isComponent) {
+    // JSX elements have the children as props
+    attributes['children'] = stack;
+    return tag(attributes);
+  }
+
+  const element = document.createElement(tag);
 
   // Add attributes
   for (let [name, attributeValue] of Object.entries(attributes)) {
