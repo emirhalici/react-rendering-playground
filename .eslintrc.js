@@ -5,8 +5,5 @@ export default {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
-  ],
-  "rules": {
-    'jsx-rule/jsx-import': 'error',
-  }
+  ]
 };
