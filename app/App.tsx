@@ -1,4 +1,3 @@
-import CheckboxComponent from './components/CheckboxComponent';
 import { customJsx } from './core/jsxHelpers';
 import { Component, ComponentProps } from './core/types';
 import useState from './core/useState';
@@ -13,22 +12,16 @@ const App: Component = ({}: ComponentProps) => {
 
   return (
     <div>
-      {CheckboxComponent({
-        label: 'Toggle',
-        id: 'checkbox',
-        checked: toggleValue,
-        onChecked: setToggleValue,
-      })}
-      <h1>Hello world {state}</h1>
+      <h1>Hello world, state: {state}</h1>
       <button
         onclick={() => {
           setState(state + 1);
         }}
       >
-        Click me
+        Increment state
       </button>
-      <h3>Toggle value: {toggleValue}</h3>
-      <ConditionalComponent state={state}>Children here</ConditionalComponent>
+      <ConditionalComponent state={state} />
+      <h3>Checkbox is {toggleValue ? 'toggled' : 'not toggled'}</h3>
       <label>
         Toggle
         <input
@@ -49,8 +42,8 @@ function ConditionalComponent(
   }>,
 ) {
   if (props.state % 2 === 0) {
-    return <div>Hello</div>;
+    return <div>State is even.</div>;
   } else {
-    return <div>{props.state}</div>;
+    return <div>State is odd: {props.state}</div>;
   }
 }
