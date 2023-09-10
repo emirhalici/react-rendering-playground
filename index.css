@@ -1,3 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800;900;1000&display=swap');
+
+body {
+  background-color: rgb(24, 24, 27);
+  color: hsl(227, 5%, 80%);
+  accent-color: rgb(188, 194, 216);
+  font-family: 'Manrope', sans-serif;
+  font-size: 12pt;
+  line-height: 20pt;
+}
+
+button {
+  font-weight: 600;
+  transition: all 100ms;
+  color: rgb(188, 194, 216);
+  background-color: hsl(240, 10%, 21%);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+button:hover {
+  background-color: hsl(240, 10%, 30%);
+  font-weight: 700;
+}
+
+button:active {
+  outline: solid 2px rgb(188, 194, 216);
+}
+
+.text-subtitle {
+  color: hsl(227, 5%, 65%);
+}
+
+.text-detail {
+  color: hsla(227, 5%, 65%, 0.6);
+}
+
 .column-up {
   display: flex;
   flex-direction: column-reverse;
