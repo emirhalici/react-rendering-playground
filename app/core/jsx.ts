@@ -22,7 +22,7 @@ const AttributeMapper = (val: string) =>
     readOnly: 'readonly',
   })[val] || val;
 
-function jsx(
+export default function simpleJsx(
   tag: string | Component,
   attributes?: Record<string, any>,
   ...children: (Element | string)[]
@@ -80,5 +80,3 @@ function jsx(
 
   return element;
 }
-
-export default { jsx };

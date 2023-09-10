@@ -1,5 +1,6 @@
-import jsx from './core/jsx';
+import simpleJsx from './core/jsx';
 import { Component, ComponentProps } from './core/types';
+
 import useState from './core/useState';
 
 const App: Component = ({}: ComponentProps) => {
