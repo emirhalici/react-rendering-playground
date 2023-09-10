@@ -1,25 +1,46 @@
 import { prepareForRender } from './useState';
-import { Component, ComponentProps } from './types';
+import { Component, ComponentProps, Render, Root } from './types';
 
-let initialComponent: Component;
-let initialComponentProps: ComponentProps;
+let currentRoot: Root | undefined;
+let currentRootComponent: Component<object> | undefined;
+let currentRootProps: ComponentProps<object>;
 
-function render() {
-  prepareForRender();
-  const entryPoint = document.querySelector('.playground-entry-point');
-  if (entryPoint) {
-    entryPoint.replaceChildren(initialComponent(initialComponentProps));
-  } else {
-    const errorMessage = document.createElement('h1');
-    errorMessage.textContent = 'Error occured while starting rendering.';
-    document.body.replaceChildren(errorMessage);
+const createRoot = (entryPoint: Element | undefined): Root => {
+  const render: Render<object> = (component, props) => {
+    currentRootComponent = component;
+    currentRootProps = props;
+    prepareForRender();
+    if (entryPoint && currentRootComponent) {
+      const renderedElements = currentRootComponent(currentRootProps);
+      entryPoint.replaceChildren(renderedElements);
+    } else {
+      const errorMessage = document.createElement('h1');
+      errorMessage.textContent = 'Error occured while starting rendering.';
+      document.body.appendChild(errorMessage);
+    }
+  };
+
+  const unmount = () => {
+    entryPoint = undefined;
+  };
+
+  const root = {
+    render,
+    unmount,
+  };
+
+  currentRoot = root;
+  return root;
+};
+
+function triggerRender() {
+  if (currentRoot && currentRootComponent) {
+    currentRoot.render(currentRootComponent, currentRootProps);
   }
 }
 
-function start(parentComponent: Component, props: ComponentProps) {
-  initialComponent = parentComponent;
-  initialComponentProps = props;
-  render();
-}
-
-export { render, start };
+const DOM = {
+  createRoot,
+  triggerRender,
+};
+export default DOM;

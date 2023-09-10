@@ -8,7 +8,6 @@ const App: Component = ({}: ComponentProps) => {
   const [toggleValue, setToggleValue] = useState(true);
 
   function handleCheckboxClick() {
-    console.log('Clicked');
     setToggleValue(!toggleValue);
   }
 

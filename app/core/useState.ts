@@ -1,4 +1,4 @@
-import { render } from './renderer';
+import DOM from './renderer';
 
 const stateValues: unknown[] = [];
 let index = -1;
@@ -14,7 +14,7 @@ const useState = <S>(
 
   const setValue = (newValue: S) => {
     stateValues[currentIndex] = newValue;
-    render();
+    DOM.triggerRender();
   };
 
   return [stateValues[currentIndex] as S, setValue];
