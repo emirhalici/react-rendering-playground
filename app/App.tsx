@@ -1,4 +1,4 @@
-import { customJsx } from './core/jsxHelpers';
+import jsx from './core/jsx';
 import { Component, ComponentProps } from './core/types';
 import useState from './core/useState';
 
