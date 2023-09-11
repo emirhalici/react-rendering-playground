@@ -1,11 +1,24 @@
 import simpleJsx from './core/jsx';
 import { Component, ComponentProps } from './core/types';
+import useEffect from './core/useEffect';
 
 import useState from './core/useState';
 
 const App: Component = ({}: ComponentProps) => {
   const [state, setState] = useState(1);
   const [toggleValue, setToggleValue] = useState(true);
+
+  useEffect(() => {
+    console.log('An effect that runs every on render');
+  });
+
+  useEffect(() => {
+    console.log('An effect that only runs once');
+  }, []);
+
+  useEffect(() => {
+    console.log(`An effect ran only when state changes. State: ${state}`);
+  }, [state]);
 
   function handleCheckboxClick() {
     setToggleValue(!toggleValue);

@@ -13,6 +13,9 @@ type Component<T = object> = (props: ComponentProps<T>) => Element;
 
 type SetValueCallback<T> = (value: T) => void;
 
+type SetupWithoutCleanup = () => void;
+type SetupWithCleanup = () => () => void;
+
 export type {
   ChildrenProps,
   ComponentProps,
@@ -20,4 +23,6 @@ export type {
   SetValueCallback,
   Root,
   Render,
+  SetupWithCleanup,
+  SetupWithoutCleanup,
 };

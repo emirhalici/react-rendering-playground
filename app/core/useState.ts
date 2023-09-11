@@ -1,13 +1,15 @@
 import DOM from './renderer';
 
+const START_INDEX = 0;
+let index = START_INDEX;
 const stateValues: unknown[] = [];
-let index = -1;
 
 const useState = <S>(
   initialValue: S,
 ): [value: S, setValue: (value: S) => void] => {
-  index++;
   const currentIndex = Number(index);
+  index++;
+
   if (stateValues[currentIndex] === undefined) {
     stateValues[currentIndex] = initialValue;
   }
@@ -21,6 +23,6 @@ const useState = <S>(
 };
 
 export default useState;
-export const prepareForRender = () => {
-  index = 1;
+export const prepareStateForRender = () => {
+  index = START_INDEX;
 };
