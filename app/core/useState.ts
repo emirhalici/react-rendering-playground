@@ -4,11 +4,11 @@ const START_INDEX = 0;
 let index = START_INDEX;
 const stateValues: unknown[] = [];
 
+const getAssignedIndex = () => index++;
 const useState = <S>(
   initialValue: S,
 ): [value: S, setValue: (value: S) => void] => {
-  const currentIndex = Number(index);
-  index++;
+  const currentIndex = getAssignedIndex();
 
   if (stateValues[currentIndex] === undefined) {
     stateValues[currentIndex] = initialValue;

@@ -7,14 +7,12 @@ const effectDependencies: {
   cleanup: (() => void) | undefined;
 }[] = [];
 
+const getAssignedIndex = () => index++;
 const useEffect = (
   setup: SetupWithCleanup | SetupWithoutCleanup,
   dependencies?: unknown[],
 ) => {
-  const currentIndex = Number(index);
-  index++;
-
-  const callSetupAndSaveCleanup = () => {
+  const callSetupAndSaveEffect = () => {
     const cleanupMethod = setup();
     const cleanupExists = typeof cleanupMethod === 'function';
 
@@ -24,21 +22,20 @@ const useEffect = (
     };
   };
 
+  const currentIndex = getAssignedIndex();
   const shouldRunEveryTime = dependencies === undefined;
   const initialized = effectDependencies[currentIndex] !== undefined;
-  if (shouldRunEveryTime || !initialized) {
-    return callSetupAndSaveCleanup();
-  }
-
   const oldDependencies = effectDependencies[currentIndex]?.dependencies;
-  if (!oldDependencies) {
-    return callSetupAndSaveCleanup();
+  if (shouldRunEveryTime || !initialized) {
+    return callSetupAndSaveEffect();
+  } else if (!oldDependencies) {
+    return callSetupAndSaveEffect();
   }
 
   // Compare dependencies
   for (let i = 0; i < dependencies.length; i++) {
     if (dependencies[i] !== oldDependencies[i]) {
-      return callSetupAndSaveCleanup();
+      return callSetupAndSaveEffect();
     }
   }
 };
