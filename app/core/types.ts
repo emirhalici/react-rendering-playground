@@ -16,6 +16,11 @@ type SetValueCallback<T> = (value: T) => void;
 type SetupWithoutCleanup = () => void;
 type SetupWithCleanup = () => () => void;
 
+type MemoDependency<T = unknown> = {
+  computedValue: T;
+  dependencies: unknown[];
+};
+
 export type {
   ChildrenProps,
   ComponentProps,
@@ -25,4 +30,5 @@ export type {
   Render,
   SetupWithCleanup,
   SetupWithoutCleanup,
+  MemoDependency,
 };
