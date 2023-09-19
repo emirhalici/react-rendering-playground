@@ -1,12 +1,19 @@
 import simpleJsx from './core/jsx';
 import { Component, ComponentProps } from './core/types';
 import useEffect from './core/useEffect';
-
+import useMemo from './core/useMemo';
 import useState from './core/useState';
+import { computeExpensiveState } from './utils';
 
 const App: Component = ({}: ComponentProps) => {
   const [state, setState] = useState(1);
   const [toggleValue, setToggleValue] = useState(true);
+  const [stateSize, setStateSize] = useState(100_000);
+
+  const expensiveValue = useMemo(
+    () => computeExpensiveState(stateSize)[0]?.id ?? 'nil',
+    [stateSize],
+  );
 
   useEffect(() => {
     console.log('An effect that runs every on render');
@@ -19,10 +26,6 @@ const App: Component = ({}: ComponentProps) => {
   useEffect(() => {
     console.log(`An effect ran only when state changes. State: ${state}`);
   }, [state]);
-
-  function handleCheckboxClick() {
-    setToggleValue(!toggleValue);
-  }
 
   return (
     <div>
@@ -44,8 +47,19 @@ const App: Component = ({}: ComponentProps) => {
           onclick={() => handleCheckboxClick()}
         />
       </label>
+      <p>Expensive state size: {stateSize}</p>
+      <p>Expensive state: {expensiveValue}</p>
+      <button onclick={computeRandomSize}>Recompute Expensive State</button>
     </div>
   );
+
+  function handleCheckboxClick() {
+    setToggleValue(!toggleValue);
+  }
+
+  function computeRandomSize() {
+    setStateSize(Math.round(Math.random() * 10_000_000));
+  }
 };
 
 export default App;

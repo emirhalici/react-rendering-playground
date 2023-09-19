@@ -1,6 +1,7 @@
 import { prepareStateForRender } from './useState';
 import { Component, ComponentProps, Render, Root } from './types';
 import { prepareEffectForRender } from './useEffect';
+import { prepareMemoForRender } from './useMemo';
 
 let currentRoot: Root | undefined;
 let currentRootComponent: Component<object> | undefined;
@@ -12,6 +13,7 @@ const createRoot = (entryPoint: Element | undefined): Root => {
     currentRootProps = props;
     prepareStateForRender();
     prepareEffectForRender();
+    prepareMemoForRender();
     if (entryPoint && currentRootComponent) {
       const renderedElements = currentRootComponent(currentRootProps);
       entryPoint.replaceChildren(renderedElements);
